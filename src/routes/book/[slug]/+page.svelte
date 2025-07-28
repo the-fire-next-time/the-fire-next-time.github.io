@@ -1,13 +1,14 @@
 <script lang="ts">
   import type { PageProps } from './$types';
-  import { cataloguePhotography } from '$lib/catalogue/mock';
+  import { catalogue } from '$lib/catalogue/mock';
   import { toDate } from '$lib/utils/time';
   import ImageSlider from '$lib/components/atoms/ImageSlider.svelte';
+  import type { Entry } from '$lib/catalogue/type';
 
   // TODO: rename the data to something more semantic?
   let { data }: PageProps = $props();
 
-  const search = cataloguePhotography.filter((entry) => entry.id === data.id);
+  const search = catalogue.filter((entry: Entry) => entry.id === data.id);
   const entry = search[0];
 
   const publishedMonth = entry?.publishedMonth

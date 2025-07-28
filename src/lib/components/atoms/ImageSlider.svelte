@@ -36,7 +36,7 @@
     {#each Object.entries(filteredImages) as [path, module] (path)}
       <li class="flex-[0_0_100%]" relative>
         <enhanced:img
-          class="w-[40%] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+          class="w-[50%] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
           src={module.default}
           alt="some alt text"
         />

@@ -1,6 +1,6 @@
 import type { Entry } from './type';
 
-export const cataloguePhotography: Entry[] = [
+export const catalogue: Entry[] = [
   {
     id: '1',
     title: '为什么，是植物图鉴',
@@ -54,6 +54,42 @@ export const cataloguePhotography: Entry[] = [
     unit: 'mm',
     format: 'paperback',
     category: 'photography',
+    tags: []
+  },
+  {
+    id: '4',
+    title: 'Sight and Sound: Chantal Akerman',
+    author: 'BFI',
+    description: [
+      'Like her filmography, which encompasses rigorously avantgarde cinema, musicals, comedies and much else, the traces Akerman left of herself in her films are wildly various. In a nifty piece of anti-self-portraiture, Chantal Akerman by Chantal Akerman (1997, made for the French TV series Cinéma, de notre temps), the director reflects on the impossibility of making a film about herself when she is commissioned to do so. “I’m an unreliable storyteller… honesty is artificial,” she tells the camera. In an interview with Nicole Brenez in 2011, Akerman would go further, warning against “rifling through [her] autobiography. It’s imprisoning.'
+    ],
+    publisher: 'BFI',
+    publishedYear: 2025,
+    publishedMonth: 1,
+    pages: 100,
+    width: 210,
+    height: 297,
+    unit: 'mm',
+    format: 'paperback',
+    category: 'cinema',
+    tags: []
+  },
+  {
+    id: '5',
+    title: '世界大笨蛋反叛手册',
+    author: '松本哉',
+    description: [
+      '在由 “纯情商店街” 和 “北中通” 两条主道编织起来的中心商区里，菜场、酒馆和日用百货铺散发出令人怀念的市井烟火气，让我差点要误信了这里只是东京 23 区里一处普通居民区，而不是那个曾经爆发过一万五千人反核大游行的地方。然而再往里走几步，种种异样感便涌上心头：绚丽夸张的卷帘门涂鸦、透着亮粉色灯光的诡异橱窗、驮着猫头鹰走来走去的嬉皮、眼花缭乱的青年向店铺…… 这绝不是老化、萧条的地方商店街会有的模样！我可以在此轻易地嗅到种种新鲜的、不安稳的气息，却又惊异地意识到，这些充满意外性的元素，似乎正是此处日常的一部分。此情此景让我想起的，是《致我们的朋友》一书的引言：“另一个世界并不存在。只有另一种生活的方式。（雅克・梅林）”'
+    ],
+    publisher: '副本制作',
+    publishedYear: 2018,
+    publishedMonth: 2,
+    pages: 324,
+    width: 130,
+    height: 184,
+    unit: 'mm',
+    format: 'paperback',
+    category: 'zine',
     tags: []
   }
 ];
