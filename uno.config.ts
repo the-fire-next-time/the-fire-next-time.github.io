@@ -12,9 +12,11 @@ import { presetScrollbar } from 'unocss-preset-scrollbar';
 export default defineConfig({
   theme: {
     colors: {
-      primary: '#1C1B1D',
+      // primary: '#1C1B1D',
+      primary: '#E0E0E0',
       secondary: '#7A7A7A',
-      tertiary: '#efeeec80'
+      tertiary: '#efeeec80',
+      dark: '#121212'
     },
     animation: {
       keyframes: {

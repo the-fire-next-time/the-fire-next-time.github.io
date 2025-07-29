@@ -35,7 +35,7 @@
   text="lg primary"
   p="x-5 t-5"
   grid="~ cols-3"
-  class="grid-rows-[auto_1fr]"
+  class="grid-rows-[auto_1fr] dark:bg-dark"
   h-screen
   overflow-hidden
 >
@@ -82,7 +82,7 @@
     height: 15em;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, transparent 70%);
-    mix-blend-mode: darken;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, transparent 70%);
+    mix-blend-mode: difference;
   }
 </style>

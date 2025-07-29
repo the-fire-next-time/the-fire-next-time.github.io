@@ -14,6 +14,7 @@
   h-full
   p-4
   bg-white
+  dark:bg-dark
   z-30
   right-full
   border="2 l-0 primary"

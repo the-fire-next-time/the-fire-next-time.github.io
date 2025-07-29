@@ -51,7 +51,8 @@
     border: 0;
     font-size: 1em;
     background: none;
-    color: rgb(0 0 0 / 0.7);
+    /* color: rgb(0 0 0 / 0.7); */
+    color: #e0e0e0;
     cursor: pointer;
   }
   @media (min-width: 1024px) {
@@ -70,7 +71,8 @@
   }
 
   ul::scroll-button(*):disabled {
-    color: rgb(0 0 0 / 0.2);
+    /* color: rgb(0 0 0 / 0.2); */
+    color: #7a7a7a;
     cursor: unset;
   }
 
