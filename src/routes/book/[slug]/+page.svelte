@@ -38,6 +38,12 @@
             {#if size}
               <li>{size}</li>
             {/if}
+            {#if entry.languages}
+              <li>{entry.languages}</li>
+            {/if}
+            {#if entry.price}
+              <li>C$ {entry.price}</li>
+            {/if}
           </ul>
         </section>
 

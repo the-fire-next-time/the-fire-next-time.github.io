@@ -3,15 +3,17 @@ export interface Entry {
   title: string;
   author: string;
   description: string[];
+  languages?: string[];
+  pages: number;
+  price?: number;
   publisher: string;
   publishedYear: number;
   publishedMonth?: number;
-  pages: number;
   format: 'paperback' | 'hardback' | 'zine';
   width?: number;
   height?: number;
   unit?: 'in' | 'mm';
-  category: 'photography' | 'cinema' | 'zine';
+  category: 'photography' | 'cinema' | 'self';
   tags: string[];
   coverUrl?: string;
 }

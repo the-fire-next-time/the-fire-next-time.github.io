@@ -5,7 +5,11 @@
   import { catalogue } from '$lib/catalogue/mock';
   import type { Entry } from '$lib/catalogue/type';
 
-  const categories = ['Photography', 'Cinema', 'Zine'];
+  const categories: Record<string, string> = {
+    Photography: 'photography',
+    Cinema: 'cinema',
+    Independent: 'self'
+  };
   const filterCategories = (category: string, entries: Entry[]): Entry[] =>
     entries.filter((entry) => entry.category === category.toLowerCase());
 </script>
@@ -17,13 +21,13 @@
     <li>
       <Link href="/intro" classNames="hover:text-secondary">Introduction</Link>
     </li>
-    {#each categories as category (category)}
+    {#each Object.keys(categories) as category (category)}
       <li>
         <Accordion {category}>
-          <ul border-l-2 border-primary pl-4 overflow-hidden>
-            {#each filterCategories(category, catalogue) as entry (entry.id)}
-              <li>
-                <Link href={`/book/${entry.id}`} classNames="hover:text-secondary"
+          <ul border-l-2 border-primary pl-4 overflow-hidden leading-none>
+            {#each filterCategories(categories[category], catalogue) as entry (entry.id)}
+              <li my-2>
+                <Link href={`/book/${entry.id}`} classNames="hover:text-secondary leading-none"
                   >{entry.title}</Link
                 >
               </li>
