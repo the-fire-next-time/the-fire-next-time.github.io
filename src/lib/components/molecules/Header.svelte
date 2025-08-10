@@ -9,7 +9,7 @@
   let { showMobileMenu = $bindable() }: HeaderProps = $props();
 </script>
 
-<header h-10 grid="~ cols-2 lg:cols-3" gap-5 items-end border="b-2 primary">
+<header h-10 grid="~ cols-2 lg:cols-3" gap-5 items-end border="b-2 primary" class="dark:bg-dark">
   <!-- home anchor -->
   <Link href="/" classNames="lg:text-3xl">Omíkhlē</Link>
 

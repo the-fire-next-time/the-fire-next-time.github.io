@@ -24,10 +24,12 @@
     {#each Object.keys(categories) as category (category)}
       <li>
         <Accordion {category}>
-          <ul border-l-2 border-primary pl-4 overflow-hidden leading-none>
+          <ul border-l-2 border-primary pl-4 overflow-hidden>
             {#each filterCategories(categories[category], catalogue) as entry (entry.id)}
               <li my-2>
-                <Link href={`/book/${entry.id}`} classNames="hover:text-secondary leading-none"
+                <Link
+                  href={`/book/${entry.id}`}
+                  classNames="hover:text-secondary leading-none line-clamp-2 lg:line-clamp-1"
                   >{entry.title}</Link
                 >
               </li>

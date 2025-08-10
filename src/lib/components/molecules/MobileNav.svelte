@@ -9,20 +9,23 @@
 </script>
 
 <div
-  absolute
+  fixed
+  top-0
   w-full
-  h-full
-  p-4
+  h-dvh
+  p-5
   bg-white
   dark:bg-dark
   z-30
   right-full
-  border="2 l-0 primary"
   class:translate-x-full={shouldExpand}
   class:translate-x-0={!shouldExpand}
+  class="lg:hidden"
   transition
   duration-400
   ease-out
+  overflow-y-scroll
+  scrollbar-none
 >
   <Nav />
 </div>
