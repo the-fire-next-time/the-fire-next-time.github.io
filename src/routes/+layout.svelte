@@ -10,7 +10,7 @@
   import { afterNavigate } from '$app/navigation';
   import MobileNav from '$lib/components/molecules/MobileNav.svelte';
 
-  let { children } = $props();
+  let { children, data } = $props();
 
   let x = $state(0);
   let y = $state(0);
@@ -31,28 +31,18 @@
   });
 </script>
 
-<div
-  relative
-  font-sans
-  text="lg primary"
-  p="x-5"
-  class="dark:bg-dark lg:t-5"
-  h-dvh
-  overflow-y-scroll
-  scrollbar-none
-  bind:this={container}
->
+<div relative font-sans text="lg primary" p="x-5" class="dark:bg-dark lg:t-5" bind:this={container}>
   <!-- header -->
   <div sticky top-0 h-10 w-full z-30>
     <Header bind:showMobileMenu={navMobile} />
   </div>
 
-  <div flex relative>
+  <div flex relative h-dvh>
     <!-- navigation -->
     <MobileNav shouldExpand={navMobile} />
     <div class="hidden lg:block w-1/3" h-full relative>
       <div fixed class="w-1/3">
-        <Nav />
+        <Nav books={data.books} />
       </div>
     </div>
 

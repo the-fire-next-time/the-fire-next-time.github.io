@@ -16,6 +16,7 @@
    * Toggle the state.
    */
   function toggle() {
+    console.log('toggling!');
     expanded = !expanded;
   }
 </script>

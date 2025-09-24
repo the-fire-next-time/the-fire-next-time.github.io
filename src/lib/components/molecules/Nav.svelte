@@ -2,8 +2,13 @@
   import Accordion from '../atoms/Accordion.svelte';
   import Link from '../atoms/Link.svelte';
 
-  import { catalogue } from '$lib/catalogue/mock';
   import type { Entry } from '$lib/catalogue/type';
+
+  interface NavProps {
+    books: Entry[];
+  }
+
+  const { books }: NavProps = $props();
 
   const categories: Record<string, string> = {
     Photography: 'photography',
@@ -11,7 +16,7 @@
     Independent: 'self'
   };
   const filterCategories = (category: string, entries: Entry[]): Entry[] =>
-    entries.filter((entry) => entry.category === category.toLowerCase());
+    entries?.filter((entry) => entry.category === category.toLowerCase());
 </script>
 
 <nav data-sveltekit-keepfocus>
@@ -25,7 +30,7 @@
       <li>
         <Accordion {category}>
           <ul border-l-2 border-primary pl-4 overflow-hidden>
-            {#each filterCategories(categories[category], catalogue) as entry (entry.id)}
+            {#each filterCategories(categories[category], books) as entry (entry.id)}
               <li my-2>
                 <Link
                   href={`/book/${entry.id}`}
