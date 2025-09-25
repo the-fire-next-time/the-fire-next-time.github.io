@@ -26,28 +26,37 @@
   onMount(() => {
     afterNavigate(() => {
       navMobile = false;
-      container.scrollTo({ top: 0, behavior: 'smooth' });
+      // container.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 </script>
 
-<div relative font-sans text="lg primary" p="x-5" class="dark:bg-dark lg:t-5" bind:this={container}>
+<div
+  relative
+  h-auto
+  font-sans
+  text="lg primary"
+  p="x-5"
+  class="dark:bg-dark lg:t-5"
+  bind:this={container}
+>
   <!-- header -->
   <div sticky top-0 h-10 w-full z-30>
     <Header bind:showMobileMenu={navMobile} />
   </div>
 
-  <div flex relative h-dvh>
+  <div flex relative>
     <!-- navigation -->
-    <MobileNav shouldExpand={navMobile} />
-    <div class="hidden lg:block w-1/3" h-full relative>
-      <div fixed class="w-1/3">
-        <Nav books={data.books} />
-      </div>
+    <MobileNav class="lg:hidden" shouldExpand={navMobile} />
+    <div class="hidden lg:block w-1/3 h-auto" relative sticky top-4 flex-none self-start>
+      <!-- <div fixed class="w-1/3"> -->
+      <Nav books={data.books} />
+      <!-- </div> -->
     </div>
 
     <main
       relative
+      min-h-dvh
       class:cursor-none={hovering}
       class="w-full lg:w-2/3 dark:bg-dark"
       onmousemove={handleMouseMove}
@@ -55,7 +64,7 @@
       onmouseleave={() => (hovering = false)}
     >
       {#key page.url.pathname}
-        <div absolute z-0 in:fade out:fade>
+        <div in:fade={{ duration: 500 }}>
           <div mt-34>
             {@render children()}
           </div>
