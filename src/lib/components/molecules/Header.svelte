@@ -1,12 +1,15 @@
 <script lang="ts">
   import Button from '../atoms/Button.svelte';
   import Link from '../atoms/Link.svelte';
+  import { useState } from '$lib/state.svelte';
 
   interface HeaderProps {
     showMobileMenu: boolean;
   }
 
   let { showMobileMenu = $bindable() }: HeaderProps = $props();
+
+  const locales: string[] = ['zh-CN', 'en'];
 </script>
 
 <header h-10 grid="~ cols-2 lg:cols-3" gap-5 items-end border="b-2 primary" class="dark:bg-dark">
@@ -22,6 +25,12 @@
       New Arrival · 他们说你的歌有谁来听
     </div>
   </aside>
+
+  <div class="hidden lg:flex" flex gap-2 justify-end>
+    {#each locales as locale (locale)}
+      <button onclick={() => (useState.locale = locale)}>{locale.toLowerCase()}</button>
+    {/each}
+  </div>
 
   <!-- mobile menu -->
   <Button

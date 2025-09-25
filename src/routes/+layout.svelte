@@ -3,12 +3,14 @@
   import { fade } from 'svelte/transition';
   import Header from '$lib/components/molecules/Header.svelte';
   import Nav from '$lib/components/molecules/Nav.svelte';
+  import MobileNav from '$lib/components/molecules/MobileNav.svelte';
 
   import 'virtual:uno.css';
   import '../app.css';
   import { onMount } from 'svelte';
   import { afterNavigate } from '$app/navigation';
-  import MobileNav from '$lib/components/molecules/MobileNav.svelte';
+  import { getBooksByLocale } from '$lib/sanity/fetch';
+  import { useState } from '$lib/state.svelte';
 
   let { children, data } = $props();
 
@@ -29,6 +31,8 @@
       // container.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  const books = $derived(getBooksByLocale(data.books, useState.locale));
 </script>
 
 <div
@@ -49,9 +53,7 @@
     <!-- navigation -->
     <MobileNav class="lg:hidden" shouldExpand={navMobile} />
     <div class="hidden lg:block w-1/3 h-auto" relative sticky top-4 flex-none self-start>
-      <!-- <div fixed class="w-1/3"> -->
-      <Nav books={data.books} />
-      <!-- </div> -->
+      <Nav {books} />
     </div>
 
     <main

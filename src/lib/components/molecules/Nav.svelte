@@ -15,6 +15,7 @@
     Cinema: 'cinema',
     Independent: 'self'
   };
+
   const filterCategories = (category: string, entries: Entry[]): Entry[] =>
     entries?.filter((entry) => entry.category === category.toLowerCase());
 </script>
@@ -33,7 +34,7 @@
             {#each filterCategories(categories[category], books) as entry (entry.id)}
               <li my-2>
                 <Link
-                  href={`/book/${entry.id}`}
+                  href={`/book/${entry._id}`}
                   classNames="hover:text-secondary leading-none line-clamp-2 lg:line-clamp-1"
                   >{entry.title}</Link
                 >

@@ -1,22 +1,24 @@
 <script lang="ts">
   import type { PageProps } from './$types';
-  import { catalogue } from '$lib/catalogue/mock';
   import { toDate } from '$lib/utils/time';
   import ImageSlider from '$lib/components/atoms/ImageSlider.svelte';
-  import type { Entry } from '$lib/catalogue/type';
+  import { PortableText } from '@portabletext/svelte';
+  import { getBook } from '$lib/sanity/fetch';
+  import { useState } from '$lib/state.svelte';
 
   // TODO: rename the data to something more semantic?
   let { data }: PageProps = $props();
 
-  const search = catalogue.filter((entry: Entry) => entry.id === data.id);
-  const entry = search[0];
+  const entry = $derived(getBook(data.books, data.id, useState.locale));
 
-  const publishedMonth = entry?.publishedMonth
-    ? toDate(entry.publishedYear, entry.publishedMonth).toLocaleString('default', {
-        month: 'short'
-      })
-    : null;
-  const size = entry?.unit && `${entry.width} x ${entry.height} ${entry.unit}`;
+  const publishedMonth = $derived(
+    entry?.publishedMonth
+      ? toDate(entry.publishedYear, entry.publishedMonth).toLocaleString('default', {
+          month: 'short'
+        })
+      : null
+  );
+  const size = $derived(entry?.unit && `${entry.width} x ${entry.height} ${entry.unit}`);
 </script>
 
 <svelte:head>
@@ -49,10 +51,7 @@
 
         <!-- description -->
         <section>
-          <!-- TODO: Not really a good practice to use index as key... -->
-          {#each entry.description as paragraph, i (i)}
-            <p>{paragraph}</p>
-          {/each}
+          <PortableText value={entry.description} />
         </section>
       </div>
 
