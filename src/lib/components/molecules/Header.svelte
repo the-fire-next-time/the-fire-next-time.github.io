@@ -2,6 +2,8 @@
   import Button from '../atoms/Button.svelte';
   import Link from '../atoms/Link.svelte';
   import { useState } from '$lib/state.svelte';
+  import { page } from '$app/state';
+  import { derived } from 'svelte/store';
 
   interface HeaderProps {
     showMobileMenu: boolean;
@@ -10,6 +12,24 @@
   let { showMobileMenu = $bindable() }: HeaderProps = $props();
 
   const locales: string[] = ['zh-CN', 'en'];
+
+  // maps from locality to book id
+  let locale2id = $derived(mapLocale2id(useState.curr));
+
+  function mapLocale2id(curr) {
+    const translations = curr?._translations;
+    const mappings = locales.map((locale) => {
+      // base url
+      const base = page.url.pathname;
+      // translation for the specified locale
+      const search = translations?.filter((trans) => trans.language === locale);
+      if (!search?.length || !base.startsWith('/book')) return [locale, base];
+
+      const translation = search[0]._id;
+      return [locale, `/book/${translation}`];
+    });
+    return Object.fromEntries(mappings);
+  }
 </script>
 
 <header h-10 grid="~ cols-2 lg:cols-3" gap-5 items-end border="b-2 primary" class="dark:bg-dark">
@@ -28,7 +48,13 @@
 
   <div class="hidden lg:flex" flex gap-2 justify-end>
     {#each locales as locale (locale)}
-      <button onclick={() => (useState.locale = locale)}>{locale.toLowerCase()}</button>
+      <Link
+        href={locale2id[locale]}
+        class="hover:text-secondary"
+        sideEffect={() => {
+          useState.locale = locale;
+        }}>{locale.toLowerCase()}</Link
+      >
     {/each}
   </div>
 

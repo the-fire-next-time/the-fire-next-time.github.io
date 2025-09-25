@@ -3,13 +3,11 @@
   import { toDate } from '$lib/utils/time';
   import ImageSlider from '$lib/components/atoms/ImageSlider.svelte';
   import { PortableText } from '@portabletext/svelte';
-  import { getBook } from '$lib/sanity/fetch';
-  import { useState } from '$lib/state.svelte';
 
   // TODO: rename the data to something more semantic?
   let { data }: PageProps = $props();
 
-  const entry = $derived(getBook(data.books, data.id, useState.locale));
+  const entry = $derived(data.curr);
 
   const publishedMonth = $derived(
     entry?.publishedMonth

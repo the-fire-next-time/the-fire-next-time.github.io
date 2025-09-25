@@ -1,3 +1,4 @@
 export const useState = $state({
-  locale: 'zh-CN'
+  locale: 'zh-CN',
+  curr: null
 });

@@ -3,18 +3,32 @@ import _ from 'lodash';
 
 const options = { next: { revalidate: 30 } };
 
-const FETCH_QUERY = `*[_type == "book" && language == "zh-CN"]{
-  title,
-  slug,
-  language,
+const FETCH_QUERY = `*[_type == "book"]{
+  ...,
   "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
     ...
   },
 }`;
 
 async function fetchBooks() {
-  const books = await client.fetch(FETCH_QUERY, {}, options);
-  return _.flatten(books.map((book) => book._translations));
+  return await client.fetch(FETCH_QUERY, {}, options);
+
+  // return _.flatten(
+  //   books.map((book) => {
+  //     // map available translations
+  //     let translations = book._translations.map((translation) => ({
+  //       ...translation,
+  //       _translations: book._translations
+  //     }));
+
+  //     // if no translations available, use the original info
+  //     if (!translations) {
+  //       translations = [book];
+  //     }
+
+  //     return translations;
+  //   })
+  // );
 }
 
 function getBooksByLocale(books, locale: string) {

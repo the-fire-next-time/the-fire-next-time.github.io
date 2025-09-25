@@ -32,6 +32,7 @@
     });
   });
 
+  // available books for the current locale
   const books = $derived(getBooksByLocale(data.books, useState.locale));
 </script>
 

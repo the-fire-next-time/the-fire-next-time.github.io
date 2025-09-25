@@ -25,13 +25,13 @@
     <li class="lg:hidden"><Link href="/">霧</Link></li>
     <li h-10 border="l-2 primary" class="lg:hidden"></li>
     <li>
-      <Link href="/intro" classNames="hover:text-secondary">Introduction</Link>
+      <Link href="/intro" class="hover:text-secondary">Introduction</Link>
     </li>
     {#each Object.keys(categories) as category (category)}
       <li>
         <Accordion {category}>
           <ul border-l-2 border-primary pl-4 overflow-hidden>
-            {#each filterCategories(categories[category], books) as entry (entry.id)}
+            {#each filterCategories(categories[category], books) as entry (entry._id)}
               <li my-2>
                 <Link
                   href={`/book/${entry._id}`}
