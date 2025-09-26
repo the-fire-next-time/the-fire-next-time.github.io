@@ -1,11 +1,13 @@
 <script lang="ts">
+  import type { ClassValue } from 'svelte/elements';
   import Nav from './Nav.svelte';
 
   interface MobileNavProps {
     shouldExpand: boolean;
+    class: ClassValue;
   }
 
-  const { shouldExpand }: MobileNavProps = $props();
+  const props: MobileNavProps = $props();
 </script>
 
 <div
@@ -18,14 +20,14 @@
   dark:bg-dark
   z-30
   right-full
-  class:translate-x-full={shouldExpand}
-  class:translate-x-0={!shouldExpand}
-  class="lg:hidden"
+  class:translate-x-full={props.shouldExpand}
+  class:translate-x-0={!props.shouldExpand}
   transition
   duration-400
   ease-out
   overflow-y-scroll
   scrollbar-none
+  class={[props.class]}
 >
   <Nav />
 </div>

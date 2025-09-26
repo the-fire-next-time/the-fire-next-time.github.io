@@ -1,15 +1,22 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import type { Snippet } from 'svelte';
+  import type { ClassValue } from 'svelte/elements';
 
   interface LinkProps {
     children: Snippet;
     href: string;
-    classNames?: string;
+    class: ClassValue;
     isExternal?: boolean;
+    sideEffect?: CallableFunction;
   }
 
-  let { children, href, isExternal = false, classNames = '' }: LinkProps = $props();
+  const props: LinkProps = $props();
 </script>
 
-<a href={base + href} class:no-underline={!isExternal} class={classNames}>{@render children?.()}</a>
+<a
+  href={base + props.href}
+  class:no-underline={!props.isExternal}
+  class={[props.class]}
+  onclick={() => props.sideEffect && props.sideEffect()}>{@render props.children?.()}</a
+>

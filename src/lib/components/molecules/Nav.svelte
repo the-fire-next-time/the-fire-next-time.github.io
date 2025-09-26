@@ -2,16 +2,22 @@
   import Accordion from '../atoms/Accordion.svelte';
   import Link from '../atoms/Link.svelte';
 
-  import { catalogue } from '$lib/catalogue/mock';
   import type { Entry } from '$lib/catalogue/type';
+
+  interface NavProps {
+    books: Entry[];
+  }
+
+  const { books }: NavProps = $props();
 
   const categories: Record<string, string> = {
     Photography: 'photography',
     Cinema: 'cinema',
     Independent: 'self'
   };
+
   const filterCategories = (category: string, entries: Entry[]): Entry[] =>
-    entries.filter((entry) => entry.category === category.toLowerCase());
+    entries?.filter((entry) => entry.category === category.toLowerCase());
 </script>
 
 <nav data-sveltekit-keepfocus>
@@ -19,16 +25,16 @@
     <li class="lg:hidden"><Link href="/">霧</Link></li>
     <li h-10 border="l-2 primary" class="lg:hidden"></li>
     <li>
-      <Link href="/intro" classNames="hover:text-secondary">Introduction</Link>
+      <Link href="/intro" class="hover:text-secondary">Introduction</Link>
     </li>
     {#each Object.keys(categories) as category (category)}
       <li>
         <Accordion {category}>
           <ul border-l-2 border-primary pl-4 overflow-hidden>
-            {#each filterCategories(categories[category], catalogue) as entry (entry.id)}
+            {#each filterCategories(categories[category], books) as entry (entry._id)}
               <li my-2>
                 <Link
-                  href={`/book/${entry.id}`}
+                  href={`/book/${entry._id}`}
                   classNames="hover:text-secondary leading-none line-clamp-2 lg:line-clamp-1"
                   >{entry.title}</Link
                 >

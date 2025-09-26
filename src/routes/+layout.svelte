@@ -3,14 +3,16 @@
   import { fade } from 'svelte/transition';
   import Header from '$lib/components/molecules/Header.svelte';
   import Nav from '$lib/components/molecules/Nav.svelte';
+  import MobileNav from '$lib/components/molecules/MobileNav.svelte';
 
   import 'virtual:uno.css';
   import '../app.css';
   import { onMount } from 'svelte';
   import { afterNavigate } from '$app/navigation';
-  import MobileNav from '$lib/components/molecules/MobileNav.svelte';
+  import { getBooksByLocale } from '$lib/sanity/fetch';
+  import { useState } from '$lib/state.svelte';
 
-  let { children } = $props();
+  let { children, data } = $props();
 
   let x = $state(0);
   let y = $state(0);
@@ -26,20 +28,21 @@
   onMount(() => {
     afterNavigate(() => {
       navMobile = false;
-      container.scrollTo({ top: 0, behavior: 'smooth' });
+      // container.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  // available books for the current locale
+  const books = $derived(getBooksByLocale(data.books, useState.locale));
 </script>
 
 <div
   relative
+  h-auto
   font-sans
   text="lg primary"
   p="x-5"
   class="dark:bg-dark lg:t-5"
-  h-dvh
-  overflow-y-scroll
-  scrollbar-none
   bind:this={container}
 >
   <!-- header -->
@@ -49,15 +52,14 @@
 
   <div flex relative>
     <!-- navigation -->
-    <MobileNav shouldExpand={navMobile} />
-    <div class="hidden lg:block w-1/3" h-full relative>
-      <div fixed class="w-1/3">
-        <Nav />
-      </div>
+    <MobileNav class="lg:hidden" shouldExpand={navMobile} />
+    <div class="hidden lg:block w-1/3 h-auto" relative sticky top-4 flex-none self-start>
+      <Nav {books} />
     </div>
 
     <main
       relative
+      min-h-dvh
       class:cursor-none={hovering}
       class="w-full lg:w-2/3 dark:bg-dark"
       onmousemove={handleMouseMove}
@@ -65,7 +67,7 @@
       onmouseleave={() => (hovering = false)}
     >
       {#key page.url.pathname}
-        <div absolute z-0 in:fade out:fade>
+        <div in:fade={{ duration: 500 }}>
           <div mt-34>
             {@render children()}
           </div>
