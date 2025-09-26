@@ -1,26 +1,17 @@
 <script lang="ts">
-  import { getBaseName } from '$lib/utils/path';
+  import type { SanityImageObject } from '@sanity/image-url/lib/types/types';
+  import { Image } from '@unpic/svelte';
+
+  import { urlFor } from '$lib/sanity/image';
+
   interface ImageSliderProps {
-    entryId: string;
+    images: SanityImageObject[];
+    caption: string;
   }
-  const { entryId }: ImageSliderProps = $props();
-  const images = import.meta.glob(
-    '$lib/assets/images/catalogue/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}',
-    {
-      eager: true,
-      query: {
-        enhanced: true
-      }
-    }
-  );
-  const getEntryId = (imgName: string) => imgName.split('-')[0];
-  const filteredImages = Object.fromEntries(
-    // here urls is a tuple of [path string, actual module]
-    Object.entries(images).filter((urls) => entryId === getEntryId(getBaseName(urls[0])))
-  );
+  const { images, caption }: ImageSliderProps = $props();
 </script>
 
-<div class="lg:fixed" bg-black w-80 h-64>
+<div class="lg:fixed lg:w-80" bg-black w-full h-64>
   <ul
     text-white
     m-0
@@ -33,13 +24,9 @@
     snap-mandatory
     class="p-[20px]"
   >
-    {#each Object.entries(filteredImages) as [path, module] (path)}
-      <li class="flex-[0_0_100%]" relative>
-        <enhanced:img
-          class="w-[50%] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-          src={module.default}
-          alt="some alt text"
-        />
+    {#each images as image, index (image._key)}
+      <li class="flex-[0_0_100%]" flex justify-center items-center>
+        <Image src={urlFor(image).url()} width={200} alt={`${caption} - ${index}`} />
       </li>
     {/each}
   </ul>

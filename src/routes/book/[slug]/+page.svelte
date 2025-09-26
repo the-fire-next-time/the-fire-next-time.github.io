@@ -3,6 +3,8 @@
   import { toDate } from '$lib/utils/time';
   import ImageSlider from '$lib/components/atoms/ImageSlider.svelte';
   import { PortableText } from '@portabletext/svelte';
+  import { Image } from '@unpic/svelte';
+  import { urlFor } from '$lib/sanity/image';
 
   // TODO: rename the data to something more semantic?
   let { data }: PageProps = $props();
@@ -54,7 +56,7 @@
       </div>
 
       <div relative overflow-hidden class="col-span-2 row-start-1 lg:col-start-2">
-        <ImageSlider entryId={data.id} />
+        <ImageSlider images={entry.images} caption={`Image preview for ${entry.title}`} />
       </div>
     </div>
   {:else}

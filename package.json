@@ -41,6 +41,7 @@
 		"@inlang/paraglide-js": "^2.2.0",
 		"@sanity/image-url": "^1.2.0",
 		"@unocss/reset": "^66.3.3",
+		"@unpic/svelte": "^1.0.0",
 		"lodash": "^4.17.21",
 		"next-sanity": "^11.1.3"
 	},
