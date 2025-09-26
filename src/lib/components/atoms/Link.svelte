@@ -9,6 +9,7 @@
     class: ClassValue;
     isExternal?: boolean;
     sideEffect?: CallableFunction;
+    disabled?: boolean;
   }
 
   const props: LinkProps = $props();
@@ -17,6 +18,7 @@
 <a
   href={base + props.href}
   class:no-underline={!props.isExternal}
-  class={[props.class]}
+  class={[props.class, props.disabled && 'text-secondary cursor-not-allowed']}
+  disabled={props.disabled}
   onclick={() => props.sideEffect && props.sideEffect()}>{@render props.children?.()}</a
 >

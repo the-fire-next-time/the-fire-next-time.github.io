@@ -3,7 +3,6 @@
   import Link from '../atoms/Link.svelte';
   import { useState } from '$lib/state.svelte';
   import { page } from '$app/state';
-  import { derived } from 'svelte/store';
 
   interface HeaderProps {
     showMobileMenu: boolean;
@@ -32,7 +31,15 @@
   }
 </script>
 
-<header h-10 grid="~ cols-2 lg:cols-3" gap-5 items-end border="b-2 primary" class="dark:bg-dark">
+<header
+  h-10
+  grid="~ cols-2 lg:cols-3"
+  gap-5
+  items-end
+  pr-2
+  border="b-2 primary"
+  class="dark:bg-dark"
+>
   <!-- home anchor -->
   <Link href="/" classNames="lg:text-3xl">Omíkhlē</Link>
 
@@ -51,6 +58,7 @@
       <Link
         href={locale2id[locale]}
         class="hover:text-secondary"
+        disabled={locale === useState.locale}
         sideEffect={() => {
           useState.locale = locale;
         }}>{locale.toLowerCase()}</Link

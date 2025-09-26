@@ -36,24 +36,16 @@
   const books = $derived(getBooksByLocale(data.books, useState.locale));
 </script>
 
-<div
-  relative
-  h-auto
-  font-sans
-  text="lg primary"
-  p="x-5"
-  class="dark:bg-dark lg:t-5"
-  bind:this={container}
->
+<div relative h-auto font-sans text="lg primary" class="dark:bg-dark lg:t-5" bind:this={container}>
   <!-- header -->
-  <div sticky top-0 h-10 w-full z-30>
+  <div sticky top-0 h-10 w-full z-30 p="x-5" class="dark:bg-dark">
     <Header bind:showMobileMenu={navMobile} />
   </div>
 
-  <div flex relative>
+  <div flex relative p="x-5">
     <!-- navigation -->
-    <MobileNav class="lg:hidden" shouldExpand={navMobile} />
-    <div class="hidden lg:block w-1/3 h-auto" relative sticky top-4 flex-none self-start>
+    <MobileNav class="lg:hidden" shouldExpand={navMobile} {books} />
+    <div class="hidden lg:block w-1/3 h-auto" relative sticky top-0 flex-none self-start>
       <Nav {books} />
     </div>
 
@@ -62,6 +54,7 @@
       min-h-dvh
       class:cursor-none={hovering}
       class="w-full lg:w-2/3 dark:bg-dark"
+      p-2
       onmousemove={handleMouseMove}
       onmouseenter={() => (hovering = true)}
       onmouseleave={() => (hovering = false)}

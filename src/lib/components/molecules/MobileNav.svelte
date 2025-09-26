@@ -1,10 +1,12 @@
 <script lang="ts">
   import type { ClassValue } from 'svelte/elements';
+  import type { Entry } from '$lib/catalogue/type';
   import Nav from './Nav.svelte';
 
   interface MobileNavProps {
     shouldExpand: boolean;
     class: ClassValue;
+    books: Entry[];
   }
 
   const props: MobileNavProps = $props();
@@ -29,5 +31,5 @@
   scrollbar-none
   class={[props.class]}
 >
-  <Nav />
+  <Nav books={props.books} />
 </div>
