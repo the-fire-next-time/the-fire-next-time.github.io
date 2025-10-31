@@ -3,7 +3,6 @@
   import Link from '../atoms/Link.svelte';
   import { useState } from '$lib/state.svelte';
   import { page } from '$app/state';
-  import { derived } from 'svelte/store';
 
   interface HeaderProps {
     showMobileMenu: boolean;
@@ -22,7 +21,7 @@
       // base url
       const base = page.url.pathname;
       // translation for the specified locale
-      const search = translations?.filter((trans) => trans.language === locale);
+      const search = translations?.filter((trans) => trans?.language === locale);
       if (!search?.length || !base.startsWith('/book')) return [locale, base];
 
       const translation = search[0]._id;
