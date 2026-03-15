@@ -11,19 +11,13 @@
   import { afterNavigate } from '$app/navigation';
   import { getBooksByLocale } from '$lib/sanity/fetch';
   import { useState } from '$lib/state.svelte';
+  import Cursor from '$lib/components/atoms/Cursor.svelte';
+  import { cursor } from '$lib/actions/useCursor.svelte';
 
   let { children, data } = $props();
 
-  let x = $state(0);
-  let y = $state(0);
-  let hovering = $state(false);
   let navMobile = $state(false);
   let container: HTMLElement;
-
-  function handleMouseMove(event: MouseEvent) {
-    x = event.clientX;
-    y = event.clientY;
-  }
 
   onMount(() => {
     afterNavigate(() => {
@@ -44,9 +38,10 @@
   p="x-5"
   class="dark:bg-dark lg:t-5"
   bind:this={container}
+  {@attach cursor}
 >
   <!-- header -->
-  <div sticky top-0 h-10 w-full z-30>
+  <div sticky top-0 h-10 w-full z-20>
     <Header bind:showMobileMenu={navMobile} />
   </div>
 
@@ -57,15 +52,7 @@
       <Nav {books} />
     </div>
 
-    <main
-      relative
-      min-h-dvh
-      class:cursor-none={hovering}
-      class="w-full lg:w-2/3 dark:bg-dark"
-      onmousemove={handleMouseMove}
-      onmouseenter={() => (hovering = true)}
-      onmouseleave={() => (hovering = false)}
-    >
+    <main relative min-h-dvh class="w-full lg:w-2/3 dark:bg-dark">
       {#key page.url.pathname}
         <div in:fade={{ duration: 500 }}>
           <div mt-34>
@@ -74,23 +61,8 @@
           <!-- <footer w-full border="t-2 primary">雾中风景, 2025</footer> -->
         </div>
       {/key}
-      {#if hovering}
-        <div z-20 class="cursor hidden lg:block" style="top: {y}px; left: {x}px;"></div>
-      {/if}
-      <div z-20 class="cursor lg:hidden top-1/2 left-full"></div>
+      <!-- Custom cursor -->
+      <Cursor />
     </main>
   </div>
 </div>
-
-<style>
-  .cursor {
-    pointer-events: none;
-    position: fixed;
-    width: 15em;
-    height: 15em;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, transparent 70%);
-    mix-blend-mode: difference;
-  }
-</style>
