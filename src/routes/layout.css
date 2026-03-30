@@ -1,14 +1,39 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+/* ── Non-binary flag palette (default) ── */
+:root {
+	--color-about: #FCF434;
+	--color-writings: #FCFCFC;
+	--color-activism: #9C59D1;
+	--color-art: #2C2C2C;
+
+	/* M3-inspired easing */
+	--ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+	--ease-standard: cubic-bezier(0.2, 0, 0, 1);
+	--duration-expand: 500ms;
+	--duration-collapse: 400ms;
+	--duration-fade: 200ms;
+
+	/* Layout */
+	--sidebar-width: 25%;
+	--content-width: 75%;
+}
+
 html,
 body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
 	background: #fff;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+html {
+	overflow: hidden;
+}
+
+body {
+	overflow: hidden;
+}
