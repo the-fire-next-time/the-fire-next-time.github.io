@@ -15,23 +15,33 @@
 			title: 'About',
 			color: 'var(--color-about)',
 			summary: AboutSummary,
-			content: AboutContent
+			content: AboutContent,
+			dark: false
 		},
 		{
 			id: 'writings',
 			title: 'Writings',
 			color: 'var(--color-writings)',
 			summary: WritingsSummary,
-			content: WritingsContent
+			content: WritingsContent,
+			dark: false
 		},
 		{
 			id: 'activism',
 			title: 'Activism',
 			color: 'var(--color-activism)',
 			summary: ActivismSummary,
-			content: ActivismContent
+			content: ActivismContent,
+			dark: true
 		},
-		{ id: 'art', title: 'Art', color: 'var(--color-art)', summary: ArtSummary, content: ArtContent }
+		{
+			id: 'art',
+			title: 'Art',
+			color: 'var(--color-art)',
+			summary: ArtSummary,
+			content: ArtContent,
+			dark: true
+		}
 	] as const;
 
 	let expandedSection = $state<string | null>(null);
@@ -62,6 +72,7 @@
 				<SectionOval
 					title={section.title}
 					color={section.color}
+					dark={section.dark}
 					isExpanded={expandedSection === section.id}
 					isAnyExpanded={expandedSection !== null}
 					onToggle={() => toggleSection(section.id)}

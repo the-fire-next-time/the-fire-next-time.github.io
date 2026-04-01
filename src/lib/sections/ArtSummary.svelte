@@ -1,1 +1,1 @@
-<p>Lorem ipsum dolor sit amet</p>
+<p>Hello, I'm Super Rabbit Person!</p>
