@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import ArrowDownOutline from 'flowbite-svelte-icons/ArrowDownOutline.svelte';
 
 	interface Props {
 		title: string;
@@ -9,23 +10,15 @@
 		onToggle: () => void;
 		summary: Snippet;
 		content: Snippet;
+		dark: boolean;
 	}
 
-	let { title, color, isExpanded, isAnyExpanded, onToggle, summary, content }: Props = $props();
+	let { title, color, dark, isExpanded, isAnyExpanded, onToggle, summary, content }: Props =
+		$props();
 
 	let isHovered = $state(false);
 
-	// Determine text color based on background luminance
-	function isDark(hex: string): boolean {
-		const c = hex.replace('#', '');
-		const r = parseInt(c.substring(0, 2), 16);
-		const g = parseInt(c.substring(2, 4), 16);
-		const b = parseInt(c.substring(4, 6), 16);
-		const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-		return luminance < 0.5;
-	}
-
-	let textColor = $derived(isDark(color) ? '#ffffff' : '#000000');
+	let textColor = $derived(dark ? '#ffffff' : '#000000');
 </script>
 
 <div
@@ -43,7 +36,7 @@
 		class="section-shape"
 		style:background-color={color}
 		role="button"
-		tabindex="1"
+		tabindex="0"
 		onclick={onToggle}
 		onkeydown={(e) => {
 			if (e.key === 'Enter' || e.key === ' ') onToggle();
@@ -66,8 +59,8 @@
 				>
 					{@render summary()}
 				</div>
-				<div class="scroll-hint" style:color={textColor}>
-					<span class="scroll-arrow">↓</span>
+				<div class="mt-8 flex justify-end" style:color={textColor}>
+					<ArrowDownOutline class="h-8 w-8 shrink-0 opacity-80" />
 				</div>
 			</div>
 		{/if}
@@ -75,9 +68,18 @@
 
 	<!-- Overflow content (below the shape, visible when expanded) -->
 	{#if isExpanded}
-		<div class="overflow-content">
+		<div class="overflow-content mt-8">
 			{@render content()}
 		</div>
+
+		<footer class="mt-8 flex flex-col pt-8 text-right">
+			<hr class="mb-4" />
+			<a href="mailto:lorrainepan@gmail.com" class="hover:underline">Email</a>
+			<a href="https://www.instagram.com/1lorrainepan/" class="hover:underline">Instagram</a>
+			<a href="https://ca.linkedin.com/in/lorraine-pan-1132442b4" class="hover:underline"
+				>LinkedIn</a
+			>
+		</footer>
 	{/if}
 </div>
 
@@ -169,16 +171,6 @@
 		flex: 1;
 		font-size: 1rem;
 		line-height: 1.6;
-	}
-
-	.scroll-hint {
-		text-align: end;
-		padding: 1rem 0;
-		opacity: 0.6;
-	}
-
-	.scroll-arrow {
-		font-size: 1.5rem;
 	}
 
 	.overflow-content {

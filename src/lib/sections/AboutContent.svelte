@@ -1,29 +1,15 @@
-<div class="section-content about-content">
-	<p class="text-lg leading-relaxed mb-8">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-		nisi ut aliquip ex ea commodo consequat.
+<div class="prose">
+	<p>
+		Now, I’m a student at University of Toronto. My research interests lie at the intersection of
+		trans and queer people, (im)migrant communities, and transnational activism. I’m also interested
+		in right-wing politics in non-Western societies.
 	</p>
 
-	<div class="mt-16 max-w-md">
-		<p class="text-base leading-relaxed italic">
-			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-			pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-			mollit anim id est laborum.
-		</p>
-	</div>
-
-	<div class="mt-16 ml-auto max-w-md">
-		<p class="text-base leading-relaxed italic">
-			Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-			laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-			beatae vitae dicta sunt explicabo.
-		</p>
-	</div>
-
-	<footer class="mt-24 pt-8 border-t border-black/20 text-right">
-		<p><a href="mailto:lorrainepan@gmail.com" class="hover:underline">Email</a></p>
-		<p><a href="#" class="hover:underline">Instagram</a></p>
-		<p><a href="#" class="hover:underline">LinkedIn</a></p>
-	</footer>
+	<p>
+		Now, I am living in Tkaronto (known as Toronto) as a first-generation migrant settler. Tkaronto
+		is covered under Treaty #13 and the Williams Treaties. <em
+			>It is the traditional territories of many First Peoples, including the Mississaugas of the
+			Credit, the Anishnaabe, the Chippewa, the Haudenosaunee, and the Wendat peoples.</em
+		>
+	</p>
 </div>

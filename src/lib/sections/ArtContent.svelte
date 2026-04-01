@@ -21,6 +21,34 @@
 	});
 </script>
 
+<div class="prose">
+	<p>
+		<em>Super Rabbit Person</em> is my first original character from my early attempts at drawing as a
+		teenager. Inspired by artists such as Michael DeForge and Charles Schulz, my illustration is a way
+		for me to express my observations, understanding, and experiences as a neurodivergent queer youth.
+	</p>
+	<p>
+		I am also a freelance graphic designer. Building on this practical foundation, I now apply my
+		academic background in gender equity and feminist advocacy to my design practice. My work
+		focuses on helping programs and organisations clearly communicate their social justice values
+		and demands through visual language. I provide social media post design, posters and flyers, and
+		visual campaign strategies. I also offer design and promotional support for independent artists
+		and organisations.
+	</p>
+	<p>
+		I provide discounted rates for projects that are grounded in social justice, equity, and
+		community advocacy.
+	</p>
+
+	<h3>Selected Works</h3>
+	<p>
+		<li>
+			<b>Commissioned Poster Design for Orange Blossom Education</b><br />
+			2025 - 2026
+		</li>
+	</p>
+</div>
+
 <Gallery class="gap-4">
 	<!-- MAIN IMAGE -->
 	<img src={main.src} alt={main.alt} class="h-[450px] w-full rounded-lg bg-gray-100 object-cover" />
@@ -38,30 +66,3 @@
 		</button>
 	{/snippet}
 </Gallery>
-
-<div class="section-content art-content">
-	<p class="mb-8 text-lg leading-relaxed">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis
-		dis parturient montes, nascetur ridiculus mus.
-	</p>
-
-	<div class="mt-12 grid grid-cols-2 gap-6">
-		<div class="aspect-square rounded-lg bg-white/10"></div>
-		<div class="aspect-square rounded-lg bg-white/10"></div>
-		<div class="aspect-square rounded-lg bg-white/10"></div>
-		<div class="aspect-square rounded-lg bg-white/10"></div>
-	</div>
-
-	<div class="mt-12">
-		<p class="text-base leading-relaxed text-white/80">
-			Donec sed odio dui. Maecenas faucibus mollis interdum. Nullam quis risus eget urna mollis
-			ornare vel eu leo.
-		</p>
-	</div>
-
-	<footer class="mt-24 border-t border-white/20 pt-8 text-right">
-		<p><a href="mailto:lorrainepan@gmail.com" class="hover:underline">Email</a></p>
-		<p><a href="#" class="hover:underline">Instagram</a></p>
-		<p><a href="#" class="hover:underline">LinkedIn</a></p>
-	</footer>
-</div>
