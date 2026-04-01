@@ -7,10 +7,11 @@
 		isExpanded: boolean;
 		isAnyExpanded: boolean;
 		onToggle: () => void;
-		children: Snippet;
+		summary: Snippet;
+		content: Snippet;
 	}
 
-	let { title, color, isExpanded, isAnyExpanded, onToggle, children }: Props = $props();
+	let { title, color, isExpanded, isAnyExpanded, onToggle, summary, content }: Props = $props();
 
 	let isHovered = $state(false);
 
@@ -30,6 +31,7 @@
 <div
 	class="section-column"
 	class:expanded={isExpanded}
+	class:scroll={isExpanded}
 	class:squished={isAnyExpanded && !isExpanded}
 	role="button"
 	tabindex="0"
@@ -43,20 +45,21 @@
 	<!-- The oval/shape -->
 	<div class="section-shape" style:background-color={color}>
 		<!-- Hover title (visible on hover when not expanded) -->
-		<span
-			class="section-title"
-			class:visible={isHovered && !isExpanded}
-			style:color={textColor}
-		>
-			{title}
-		</span>
+		{#if !isExpanded}
+			<span class="section-title" class:visible={isHovered} style:color={textColor}>
+				{title}
+			</span>
+		{/if}
 
 		<!-- Expanded header + content preview -->
 		{#if isExpanded}
 			<div class="expanded-header" style:color={textColor}>
 				<h2 class="expanded-title">{title}</h2>
-				<div class="expanded-content" style:color={textColor}>
-					{@render children()}
+				<div
+					class="expanded-content flex items-end justify-end [&_p]:w-3/4"
+					style:color={textColor}
+				>
+					{@render summary()}
 				</div>
 				<div class="scroll-hint" style:color={textColor}>
 					<span class="scroll-arrow">↓</span>
@@ -68,7 +71,7 @@
 	<!-- Overflow content (below the shape, visible when expanded) -->
 	{#if isExpanded}
 		<div class="overflow-content">
-			<!-- Additional scrollable content would go here -->
+			{@render content()}
 		</div>
 	{/if}
 </div>
@@ -81,6 +84,7 @@
 		align-items: center;
 		height: 100%;
 		min-width: 0;
+		padding-top: 10rem;
 		cursor: pointer;
 		transition:
 			flex var(--duration-expand) var(--ease-emphasized),
@@ -89,9 +93,8 @@
 	}
 
 	.section-column.expanded {
-		flex: 4;
+		flex: 3;
 		cursor: default;
-		overflow-y: auto;
 		align-items: stretch;
 	}
 
@@ -108,7 +111,7 @@
 		overflow: hidden;
 		/* Default: tall ellipse */
 		border-radius: 50%;
-		min-height: 70vh;
+		min-height: 60vh;
 		transition:
 			border-radius var(--duration-expand) var(--ease-emphasized),
 			min-height var(--duration-expand) var(--ease-emphasized),
@@ -117,7 +120,7 @@
 
 	.expanded .section-shape {
 		border-radius: 24px;
-		min-height: 80vh;
+		min-height: 60vh;
 		align-items: flex-start;
 		justify-content: flex-start;
 	}
@@ -164,7 +167,7 @@
 	}
 
 	.scroll-hint {
-		text-align: center;
+		text-align: end;
 		padding: 1rem 0;
 		opacity: 0.6;
 	}
@@ -175,7 +178,7 @@
 
 	.overflow-content {
 		width: 100%;
-		padding: 2rem 0;
+		padding: 1rem;
 	}
 
 	@keyframes contentFadeIn {
