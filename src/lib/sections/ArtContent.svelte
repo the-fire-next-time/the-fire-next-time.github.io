@@ -1,24 +1,51 @@
 <script lang="ts">
-	import { Gallery } from 'flowbite-svelte';
-	import type { ImgType } from 'flowbite-svelte';
+	import Gallery from '$lib/Gallery.svelte';
+	import obeMandarin from '$lib/assets/images/obe-1.jpg';
+	import obeBeyondMandarin from '$lib/assets/images/obe-2.jpg';
+	import obeJapanese from '$lib/assets/images/obe-3.jpg';
+	import pin1 from '$lib/assets/images/pin-1.JPG';
+	import pin2 from '$lib/assets/images/pin-2.JPG';
+	import pin3 from '$lib/assets/images/pin-3.JPG';
+	import pin4 from '$lib/assets/images/pin-4.JPG';
+	import pin5 from '$lib/assets/images/pin-5.JPG';
+	import oc1 from '$lib/assets/images/oc-1.jpg';
+	import oc2 from '$lib/assets/images/oc-2.jpg';
+	import oc3 from '$lib/assets/images/oc-3.jpg';
+	import oc4 from '$lib/assets/images/oc-4.jpg';
+	import oc5 from '$lib/assets/images/oc-5.jpg';
+	import oc6 from '$lib/assets/images/oc-6.jpg';
 
-	const image1 = {
-		alt: 'erbology',
-		src: 'https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg'
+	const images = {
+		obe: {
+			cover: { alt: 'Orange Blossom Education - Mandarin', src: obeMandarin },
+			items: [
+				{ alt: 'Orange Blossom Education - Mandarin', src: obeMandarin },
+				{ alt: 'Orange Blossom Education - Beyond Mandarin', src: obeBeyondMandarin },
+				{ alt: 'Orange Blossom Education - Japanese', src: obeJapanese }
+			]
+		},
+		pins: {
+			cover: { alt: 'Pins - Angle 1', src: pin1 },
+			items: [
+				{ alt: 'Pins - Angle 1', src: pin1 },
+				{ alt: 'Pins - Angle 2', src: pin2 },
+				{ alt: 'Pins - Angle 3', src: pin3 },
+				{ alt: 'Pins - Angle 4', src: pin4 },
+				{ alt: 'Pins - Angle 5', src: pin5 }
+			]
+		},
+		original: {
+			cover: { alt: 'Original Characters #1', src: oc1 },
+			items: [
+				{ alt: 'Original Characters #1', src: oc1 },
+				{ alt: 'Original Characters #2', src: oc2 },
+				{ alt: 'Original Characters #3', src: oc3 },
+				{ alt: 'Original Characters #4', src: oc4 },
+				{ alt: 'Original Characters #5', src: oc5 },
+				{ alt: 'Original Characters #6', src: oc6 }
+			]
+		}
 	};
-
-	const images2 = [
-		{ alt: 'shoes', src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg' },
-		{ alt: 'small bag', src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg' },
-		{ alt: 'plants', src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg' },
-		{ alt: 'watch', src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg' },
-		{ alt: 'shoe', src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg' }
-	];
-
-	let main = $state<ImgType>({
-		alt: image1.alt,
-		src: image1.src
-	});
 </script>
 
 <div class="prose">
@@ -49,20 +76,24 @@
 	</p>
 </div>
 
-<Gallery class="gap-4">
-	<!-- MAIN IMAGE -->
-	<img src={main.src} alt={main.alt} class="h-[450px] w-full rounded-lg bg-gray-100 object-cover" />
+<Gallery cover={images.obe.cover} items={images.obe.items} />
 
-	<!-- THUMBNAILS -->
-	<Gallery class="grid-cols-5" items={images2} {figure} />
+<hr class="my-8" />
 
-	{#snippet figure(item)}
-		<button
-			type="button"
-			class="cursor-pointer rounded-lg border-0 bg-transparent p-0 hover:opacity-80"
-			onclick={() => (main = item)}
-		>
-			<img src={item.src} alt={item.alt} class="rounded-lg" />
-		</button>
-	{/snippet}
-</Gallery>
+<div class="prose">
+	<p>
+		<li><b>LGBTQ Pin Set Design</b><br />2025</li>
+	</p>
+</div>
+
+<Gallery cover={images.pins.cover} items={images.pins.items} />
+
+<hr class="my-8" />
+
+<div class="prose">
+	<p>
+		<li><b>Original Characters</b><br />2025</li>
+	</p>
+</div>
+
+<Gallery cover={images.original.cover} items={images.original.items} />
