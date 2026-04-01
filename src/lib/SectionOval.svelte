@@ -33,17 +33,22 @@
 	class:expanded={isExpanded}
 	class:scroll={isExpanded}
 	class:squished={isAnyExpanded && !isExpanded}
-	role="button"
+	role="tab"
 	tabindex="0"
-	onclick={onToggle}
-	onkeydown={(e) => {
-		if (e.key === 'Enter' || e.key === ' ') onToggle();
-	}}
 	onmouseenter={() => (isHovered = true)}
 	onmouseleave={() => (isHovered = false)}
 >
 	<!-- The oval/shape -->
-	<div class="section-shape" style:background-color={color}>
+	<div
+		class="section-shape"
+		style:background-color={color}
+		role="button"
+		tabindex="1"
+		onclick={onToggle}
+		onkeydown={(e) => {
+			if (e.key === 'Enter' || e.key === ' ') onToggle();
+		}}
+	>
 		<!-- Hover title (visible on hover when not expanded) -->
 		{#if !isExpanded}
 			<span class="section-title" class:visible={isHovered} style:color={textColor}>
