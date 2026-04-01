@@ -1,15 +1,37 @@
 <script lang="ts">
 	import SectionOval from '$lib/SectionOval.svelte';
 	import AboutContent from '$lib/sections/AboutContent.svelte';
+	import AboutSummary from '$lib/sections/AboutSummary.svelte';
 	import WritingsContent from '$lib/sections/WritingsContent.svelte';
 	import ActivismContent from '$lib/sections/ActivismContent.svelte';
 	import ArtContent from '$lib/sections/ArtContent.svelte';
+	import WritingsSummary from '$lib/sections/WritingsSummary.svelte';
+	import ActivismSummary from '$lib/sections/ActivismSummary.svelte';
+	import ArtSummary from '$lib/sections/ArtSummary.svelte';
 
 	const sections = [
-		{ id: 'about', title: 'About', color: 'var(--color-about)' },
-		{ id: 'writings', title: 'Writings', color: 'var(--color-writings)' },
-		{ id: 'activism', title: 'Activism', color: 'var(--color-activism)' },
-		{ id: 'art', title: 'Art', color: 'var(--color-art)' }
+		{
+			id: 'about',
+			title: 'About',
+			color: 'var(--color-about)',
+			summary: AboutSummary,
+			content: AboutContent
+		},
+		{
+			id: 'writings',
+			title: 'Writings',
+			color: 'var(--color-writings)',
+			summary: WritingsSummary,
+			content: WritingsContent
+		},
+		{
+			id: 'activism',
+			title: 'Activism',
+			color: 'var(--color-activism)',
+			summary: ActivismSummary,
+			content: ActivismContent
+		},
+		{ id: 'art', title: 'Art', color: 'var(--color-art)', summary: ArtSummary, content: ArtContent }
 	] as const;
 
 	let expandedSection = $state<string | null>(null);
@@ -21,10 +43,7 @@
 
 <svelte:head>
 	<title>Lorraine Pan</title>
-	<meta
-		name="description"
-		content="Lorraine Pan — writer, activist, and graphic designer."
-	/>
+	<meta name="description" content="Lorraine Pan — writer, activist, and graphic designer." />
 </svelte:head>
 
 <div class="page-wrapper">
@@ -46,6 +65,8 @@
 					isExpanded={expandedSection === section.id}
 					isAnyExpanded={expandedSection !== null}
 					onToggle={() => toggleSection(section.id)}
+					summary={section.summary}
+					content={section.content}
 				>
 					{#if section.id === 'about'}
 						<AboutContent />
@@ -109,7 +130,8 @@
 		gap: 0;
 		height: 100%;
 		align-items: center;
-		padding: 3rem 2rem;
+		padding-left: 5rem;
+		padding-right: 5rem;
 		box-sizing: border-box;
 	}
 </style>
