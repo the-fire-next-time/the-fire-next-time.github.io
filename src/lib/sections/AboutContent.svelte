@@ -1,3 +1,7 @@
+<script lang="ts">
+	import AboutImage from '$lib/assets/images/about.jpg';
+</script>
+
 <div class="prose">
 	<p>
 		Now, I’m a student at University of Toronto. My research interests lie at the intersection of
@@ -12,4 +16,6 @@
 			Credit, the Anishnaabe, the Chippewa, the Haudenosaunee, and the Wendat peoples.</em
 		>
 	</p>
+
+	<enhanced:img class="w-full" src={AboutImage} alt="About me"></enhanced:img>
 </div>
