@@ -8,6 +8,9 @@
 	import WritingsSummary from '$lib/sections/WritingsSummary.svelte';
 	import ActivismSummary from '$lib/sections/ActivismSummary.svelte';
 	import ArtSummary from '$lib/sections/ArtSummary.svelte';
+	import HoverImage from '$lib/HoverImage.svelte';
+
+	import CoverImage from '$lib/assets/images/lorraine-pan.jpg';
 
 	const sections = [
 		{
@@ -60,7 +63,9 @@
 	<!-- Fixed sidebar -->
 	<aside class="sidebar">
 		<div class="sidebar-content">
-			<h1 class="site-title">Lorraine Pan</h1>
+			<HoverImage src={CoverImage} alt="Hidden image of Lorraine Pan" left="3rem" top="15rem">
+				<h1 class="site-title">Lorraine Pan</h1>
+			</HoverImage>
 			<p class="site-email">lorrainepan [at] gmail [dot] com</p>
 		</div>
 	</aside>
@@ -173,6 +178,8 @@
 			width: 100%;
 			height: auto;
 			overflow: visible;
+			position: relative;
+			top: 5rem;
 		}
 
 		.sections-row {
