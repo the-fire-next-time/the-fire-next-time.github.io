@@ -50,7 +50,7 @@
 		oppression along with resisting racism, colonialism, and xenophobia.
 	</p>
 
-	<b>Selected Works</b>
+	<h3>Selected Works</h3>
 	<ul>
 		{#each articles as article (article.title)}
 			<li>

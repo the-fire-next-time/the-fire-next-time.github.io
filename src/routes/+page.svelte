@@ -64,9 +64,9 @@
 	<aside class="sidebar">
 		<div class="sidebar-content">
 			<HoverImage src={CoverImage} alt="Hidden image of Lorraine Pan" left="3rem" top="15rem">
-				<h1 class="site-title">Lorraine Pan</h1>
+				<h1 class="site-title font-heading">Lorraine Pan</h1>
 			</HoverImage>
-			<p class="site-email">lorrainepan [at] gmail [dot] com</p>
+			<p class="site-email font-mono">lorrainepan [at] gmail [dot] com</p>
 		</div>
 	</aside>
 
