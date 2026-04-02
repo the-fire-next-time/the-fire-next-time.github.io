@@ -42,7 +42,7 @@
 			if (e.key === 'Enter' || e.key === ' ') onToggle();
 		}}
 	>
-		<!-- Hover title (visible on hover when not expanded) -->
+		<!-- Hover title (visible on hover when not expanded, always visible on mobile) -->
 		{#if !isExpanded}
 			<span class="section-title" class:visible={isHovered} style:color={textColor}>
 				{title}
@@ -109,6 +109,28 @@
 		flex: 0.6;
 	}
 
+	/* ── Mobile: vertical stacking ── */
+	@media (max-width: 768px) {
+		.section-column {
+			flex: none;
+			height: auto;
+			width: 100%;
+			padding-top: 0;
+			align-items: stretch;
+			transition: none;
+		}
+
+		.section-column.expanded {
+			flex: none;
+			cursor: default;
+			align-items: stretch;
+		}
+
+		.section-column.squished {
+			flex: none;
+		}
+	}
+
 	.section-shape {
 		position: relative;
 		width: 100%;
@@ -132,6 +154,28 @@
 		justify-content: flex-start;
 	}
 
+	/* ── Mobile: landscape ellipse, expands vertically ── */
+	@media (max-width: 768px) {
+		.section-shape {
+			min-height: 80px;
+			max-height: 80px;
+			width: 100%;
+			border-radius: 50%;
+			transition:
+				border-radius var(--duration-expand) var(--ease-emphasized),
+				min-height var(--duration-expand) var(--ease-emphasized),
+				max-height var(--duration-expand) var(--ease-emphasized);
+		}
+
+		.expanded .section-shape {
+			border-radius: 24px;
+			min-height: 30vh;
+			max-height: none;
+			align-items: flex-start;
+			justify-content: flex-start;
+		}
+	}
+
 	/* ── Hover title ── */
 	.section-title {
 		font-size: 1.75rem;
@@ -148,6 +192,15 @@
 	.section-title.visible {
 		opacity: 1;
 		transform: scale(1);
+	}
+
+	/* On mobile, always show the title (no hover on touch) */
+	@media (max-width: 768px) {
+		.section-title {
+			opacity: 1;
+			transform: scale(1);
+			font-size: 1.25rem;
+		}
 	}
 
 	/* ── Expanded content ── */
