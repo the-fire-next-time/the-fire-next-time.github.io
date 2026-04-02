@@ -58,7 +58,7 @@
 		<!-- Hover title (visible on hover when not expanded, always visible on mobile) -->
 		{#if !isExpanded}
 			<span
-				class="section-title"
+				class="section-title font-heading"
 				class:visible={isHovered}
 				style:color={textColor}
 				class:section-title-transform={isSquished}
@@ -69,10 +69,10 @@
 
 		<!-- Expanded header + content preview -->
 		{#if isExpanded}
-			<div class="expanded-header" style:color={textColor}>
+			<div class="expanded-header font-heading" style:color={textColor}>
 				<h2 class="expanded-title">{title}</h2>
 				<div
-					class="expanded-content flex items-end justify-end [&_p]:w-3/4"
+					class="expanded-content flex items-end justify-end text-lg [&_p]:w-3/4"
 					style:color={textColor}
 				>
 					{@render summary()}
