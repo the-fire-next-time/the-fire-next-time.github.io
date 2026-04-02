@@ -17,15 +17,28 @@
 		$props();
 
 	let isHovered = $state(false);
+	let sectionEl = $state<HTMLElement | null>(null);
 
 	let textColor = $derived(dark ? '#ffffff' : '#000000');
+	let isSquished = $derived(isAnyExpanded && !isExpanded);
+
+	// When a section expands, always start at the top —
+	// resets the element's own scroll position (desktop)
+	// and scrolls it into view from the top of the page (mobile).
+	$effect(() => {
+		if (isExpanded && sectionEl) {
+			sectionEl.scrollTo({ top: 0, behavior: 'smooth' });
+			sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	});
 </script>
 
 <div
+	bind:this={sectionEl}
 	class="section-column"
 	class:expanded={isExpanded}
 	class:scroll={isExpanded}
-	class:squished={isAnyExpanded && !isExpanded}
+	class:squished={isSquished}
 	role="tab"
 	tabindex="0"
 	onmouseenter={() => (isHovered = true)}
@@ -44,7 +57,12 @@
 	>
 		<!-- Hover title (visible on hover when not expanded, always visible on mobile) -->
 		{#if !isExpanded}
-			<span class="section-title" class:visible={isHovered} style:color={textColor}>
+			<span
+				class="section-title"
+				class:visible={isHovered}
+				style:color={textColor}
+				class:section-title-transform={isSquished}
+			>
 				{title}
 			</span>
 		{/if}
@@ -181,7 +199,6 @@
 		font-size: 1.75rem;
 		font-weight: 400;
 		opacity: 0;
-		transform: scale(0.92);
 		transition:
 			opacity var(--duration-fade) ease,
 			transform var(--duration-fade) ease;
@@ -189,9 +206,12 @@
 		user-select: none;
 	}
 
+	.section-title-transform {
+		transform: rotate(90deg);
+	}
+
 	.section-title.visible {
 		opacity: 1;
-		transform: scale(1);
 	}
 
 	/* On mobile, always show the title (no hover on touch) */
