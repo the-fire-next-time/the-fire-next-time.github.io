@@ -16,7 +16,7 @@
 	<enhanced:img
 		src={main.src}
 		alt={main.alt}
-		class="h-[600px] w-full rounded-lg bg-gray-100 object-cover"
+		class="h-[600px] w-full rounded-lg bg-gray-100 object-scale-down"
 	/>
 
 	<!-- THUMBNAILS -->
@@ -28,7 +28,7 @@
 			class="cursor-pointer rounded-lg border-0 bg-transparent p-0 hover:opacity-80"
 			onclick={() => (main = item)}
 		>
-			<enhanced:img src={item.src} alt={item.alt} class="h-[100px] rounded-lg object-cover" />
+			<enhanced:img src={item.src} alt={item.alt} class="h-[100px] w-[100px] rounded-lg object-cover" />
 		</button>
 	{/snippet}
 </Gallery>
